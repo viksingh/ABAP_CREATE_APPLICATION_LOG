@@ -1,0 +1,4 @@
+ABAP_CREATE_APPLICATION_LOG
+===========================
+
+ABAP_CREATE_APPLICATION_LOG
