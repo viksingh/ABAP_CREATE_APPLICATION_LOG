@@ -1,0 +1,15 @@
+  call function 'BAL_LOG_MSG_ADD'
+    exporting
+      i_log_handle   = lv_log_handle
+      i_s_msg        = i_msg
+    importing
+      e_s_msg_handle = lv_msg_handle.
+
+*<= Set errors found flag
+  if gv_errors <> 'X' and i_msg-msgty = 'E'.
+    gv_errors = 'X'.
+  endif.
+
+   IF save_log_entries = zcl_application_log=>false.
+      save_log_entries = zcl_application_log=>true.
+   endif.
