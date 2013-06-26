@@ -1,0 +1,25 @@
+class ZCL_APPLICATION_LOG definition
+  public
+  create public .
+
+*"* public components of class ZCL_APPLICATION_LOG
+*"* do not include other source files here!!!
+public section.
+
+  data GV_ERRORS type BOOLEAN .
+
+  methods CONSTRUCTOR
+    importing
+      !I_LOG type BAL_S_LOG .
+  methods ADD_MESSAGE
+    importing
+      !I_MSG type BAL_S_MSG .
+  methods DISPLAY_LOG .
+  methods SAVE_LOG .
+  methods ADD_FREE_TEXT
+    importing
+      !INPUT_TEXT type CHAR200
+      !MSGTY type MSGTY optional .
+  methods ADD_APP_LOG_TAB
+    importing
+      !IM_APP_LOG_TAB type BAPIRETTAB .
