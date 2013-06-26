@@ -1,0 +1,18 @@
+  data : lo_app_log_row type ref to   bapiret2,
+        ls_msg type bal_s_msg.
+
+
+
+  loop at im_app_log_tab reference into lo_app_log_row.
+    move-corresponding lo_app_log_row->* to ls_msg.
+
+    ls_msg-msgty = lo_app_log_row->type.
+    ls_msg-msgid = lo_app_log_row->id.
+    ls_msg-msgno = lo_app_log_row->number.
+    ls_msg-msgv1 = lo_app_log_row->message_v1.
+    ls_msg-msgv2 = lo_app_log_row->message_v2.
+    ls_msg-msgv3 = lo_app_log_row->message_v3.
+    ls_msg-msgv4 = lo_app_log_row->message_v4.
+
+    me->add_message( ls_msg ).
+  endloop.
