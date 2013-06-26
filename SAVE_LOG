@@ -1,0 +1,29 @@
+  DATA:    lt_handle_tab     TYPE bal_t_logh,
+            lv_in_update_task TYPE boole_d.
+
+append LV_LOG_HANDLE to lt_handle_tab.
+
+
+IF save_log_entries = zcl_application_log=>true.
+
+*   save log only if there are really messages assigned to it
+    lv_in_update_task = ' '.
+    CALL FUNCTION 'BAL_DB_SAVE'
+      EXPORTING
+        i_t_log_handle   = lt_handle_tab
+        i_in_update_task = lv_in_update_task
+      EXCEPTIONS
+        OTHERS           = 1.
+
+  endif.
+
+* Not needed ??
+** Refresh global log entries after saving log
+*      LOOP AT lt_handle_tab ASSIGNING <fs_handle>.
+*
+*        CALL FUNCTION 'BAL_LOG_REFRESH'
+*          EXPORTING
+*            i_log_handle = <fs_handle>.
+*
+*      ENDLOOP.
+*
