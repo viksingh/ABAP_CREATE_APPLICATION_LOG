@@ -1,0 +1,32 @@
+  data: lv_msgtype type msgty.
+
+  if msgty is not supplied.
+    lv_msgtype = 'I'.
+  else.
+    lv_msgtype = msgty.
+  endif.
+
+  call function 'BAL_LOG_MSG_ADD_FREE_TEXT'
+    exporting
+     i_log_handle              = lv_log_handle
+      i_msgty                   = lv_msgtype
+*         I_PROBCLASS               = '4'
+      i_text                    = input_text
+*         I_S_CONTEXT               =
+*         I_S_PARAMS                =
+   importing
+     e_s_msg_handle            = lv_msg_handle
+*         E_MSG_WAS_LOGGED          =
+*         E_MSG_WAS_DISPLAYED       =
+   exceptions
+     log_not_found             = 1
+     msg_inconsistent          = 2
+     log_is_full               = 3
+     others                    = 4.
+
+  if sy-subrc <> 0.
+* MESSAGE ID SY-MSGID TYPE SY-MSGTY NUMBER SY-MSGNO
+*         WITH SY-MSGV1 SY-MSGV2 SY-MSGV3 SY-MSGV4.
+  endif.
+
+  save_log_entries = zcl_application_log=>true.
