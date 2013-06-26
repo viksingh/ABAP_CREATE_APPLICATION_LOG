@@ -1,0 +1,9 @@
+*"* protected components of class ZCL_APPLICATION_LOG
+*"* do not include other source files here!!!
+protected section.
+
+  data LV_LOG_HANDLE type BALLOGHNDL .
+  data LV_MSG_HANDLE type BALMSGHNDL .
+  constants TRUE type BOOLE_D value 'X'. "#EC NOTEXT
+  constants FALSE type BOOLE_D value ' '. "#EC NOTEXT
+  data SAVE_LOG_ENTRIES type BOOLE_D .
