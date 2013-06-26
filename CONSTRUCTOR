@@ -1,0 +1,5 @@
+  call function 'BAL_LOG_CREATE'
+    exporting
+      i_s_log      = i_log
+    importing
+      e_log_handle = lv_log_handle.
